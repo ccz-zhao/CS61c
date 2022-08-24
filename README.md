@@ -1,4 +1,4 @@
-# CS61c
+# CS61c su22-lab
 
 [课程网址](https://inst.eecs.berkeley.edu/~cs61c/su22/)
 
