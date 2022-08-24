@@ -8,7 +8,11 @@
 */
 uint32_t get_bit(uint32_t x, uint32_t n) {
     /* YOUR CODE HERE */
-    return -1; /* UPDATE RETURN VALUE */
+    int mask = 1 << n;
+    if (x & mask) 
+      return 1;
+    else
+      return 0; /* UPDATE RETURN VALUE */
 }
 
 /*
@@ -17,6 +21,11 @@ uint32_t get_bit(uint32_t x, uint32_t n) {
 */
 void set_bit(uint32_t *x, uint32_t n, uint32_t v) {
     /* YOUR CODE HERE */
+    int mask = 1 << n;
+    if (v == 1) 
+      *x =  *x | mask;
+    else 
+      *x = *x & (~mask);
 }
 
 /*
@@ -25,5 +34,9 @@ void set_bit(uint32_t *x, uint32_t n, uint32_t v) {
 */
 void flip_bit(uint32_t *x, uint32_t n) {
     /* YOUR CODE HERE */
+    if (get_bit(*x, n))
+      set_bit(x, n, 0);
+    else
+      set_bit(x, n, 1);
 }
 
