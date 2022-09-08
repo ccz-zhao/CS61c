@@ -14,20 +14,19 @@
 # ==============================================================================
 relu:
 	# Prologue
-
-
+	addi sp, sp, 4
+    sw s0, 0(sp)
 loop_start:
-
-
-
-
-
-
-
+	add s0, a0, x0
+    add t0, a1, x0
+    bgt t0, x0, loop_continue
+    li a0, 36
+    j exit
 
 loop_continue:
-
-
+	beq t0, x0, loop_end
+	addi t0, t0, -1
+    
 
 loop_end:
 
