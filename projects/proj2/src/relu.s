@@ -14,24 +14,35 @@
 # ==============================================================================
 relu:
 	# Prologue
-	addi sp, sp, 4
+	addi sp, sp, -8
     sw s0, 0(sp)
+	sw s1, 4(sp)
 loop_start:
 	add s0, a0, x0
-    add t0, a1, x0
-    bgt t0, x0, loop_continue
+    add s1, a1, x0
+    bgt s1, x0, loop_continue
     li a0, 36
     j exit
 
 loop_continue:
-	beq t0, x0, loop_end
-	addi t0, t0, -1
+	beq s1, x0, loop_end
+	addi s1, s1, -1
+	lw t1, 0(s0)
+	blt t1, x0, neg
+continue:
+	addi t0, x0, 1
+	slli t0, t0, 2
+	add s0, s0, t0
+	j loop_continue
+neg:
+	add t1, x0, x0
+	sw t1, 0(s0)
+	j continue
     
 
 loop_end:
-
-
 	# Epilogue
-
-
-	ret
+	lw s0, 0(sp)
+	lw s1, 4(sp)
+	addi sp, sp, 8
+	jr ra
