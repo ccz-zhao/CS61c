@@ -27,10 +27,10 @@ matmul:
 
 	# Error checks
 	addi t0, x0, 1
-	blt a1, t0, error_38
-	blt a4, t0, error_38
-	blt a5, t0, error_38
-	bne a2, a4, error_38
+	blt a1, t0, exit_bad_dim
+	blt a4, t0, exit_bad_dim
+	blt a5, t0, exit_bad_dim
+	bne a2, a4, exit_bad_dim
 	# Prologue
 	addi sp, sp, -32
 	sw s0, 0(sp) 
@@ -54,11 +54,6 @@ matmul:
 	add t1, x0, x0 # j = 0
 
 	j outer_loop_start
-
-error_38:
-	li a0, 38
-	j exit
-
 
 outer_loop_start:
 	beq t0, s1, outer_loop_end
@@ -103,3 +98,7 @@ outer_loop_end:
 	lw ra, 28(sp)
 	addi sp, sp, 32
 	ret
+
+exit_bad_dim:
+	li a0, 38
+	j exit
