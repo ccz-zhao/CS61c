@@ -1,0 +1,18 @@
+#include "tiktok.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <omp.h>
+#define LENGTH (1<<28)
+#define iterations 8
+int main () {
+    char* x = malloc(sizeof(char)*LENGTH);
+    printf("Starting\n");
+    fflush(stdout);
+    Tik(serial_for)
+    for(int j = 0;j<iterations;j++) {
+      for(int i = 0; i < LENGTH; i++) {
+        x[i] = j;
+      }
+    }
+    Tok(serial_for)
+}
